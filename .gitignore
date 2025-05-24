@@ -1,4 +1,10 @@
+.env/
 venv/
 env/
 .venv/
 __pycache__/
+
+# Django-specific
+db.sqlite3
+*.log
+migrations/
