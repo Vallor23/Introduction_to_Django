@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ..bookshelf.views import BookListCreateAPIView
-from LibraryProject.bookshelf import views
+from bookshelf.views import BookListCreateAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/books', views.BookListCreateAPIView.as_view(), name= "book_list_create")
+    path('api/books/', BookListCreateAPIView.as_view(), name="book_list_create")
 ]
