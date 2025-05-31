@@ -13,4 +13,4 @@ class BookSerializer(serializers.ModelSerializer):
     def get_days_since_created(self, obj):
         now = datetime.now(datetime.timezone.utc)
         delta = now - obj.created_at
-        return delta
+        return delta.days
