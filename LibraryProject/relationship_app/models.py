@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.db import models
 
 # Create your models here
@@ -12,7 +12,7 @@ class Book(models.Model):
     title = models.CharField(max_length=250)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
     isbn = models.CharField(max_length=13, null=True, blank=True)
-    publication_year = models.DateField(default=timezone.utc)
+    publication_year = models.DateField(default=timezone.now)
     class Meta:
         ordering = ['-publication_year']
     
