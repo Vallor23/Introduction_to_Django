@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 from bookshelf.views import BookListCreateAPIView
-from relationship_app.views import LibraryDetailView, booklist_view, LoginView, LogoutView, RegisterView
+from relationship_app.views import LibraryDetailView, booklist_view, RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
