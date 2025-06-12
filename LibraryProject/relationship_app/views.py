@@ -11,7 +11,7 @@ def booklist_view(request):
      books = Book.objects.all()  # Fetch all book instances from the database
      return render(request,'relationship_app/book_list.html', context={'book_list': books})  # Render context dictionary with book list
 
-
+# check if a user has the necessary permissions before allowing them to perform create, update, or delete operations.
 @permission_required('can_add_book')
 def add_book(request):
     if request.method == 'POST':
