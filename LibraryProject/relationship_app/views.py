@@ -3,13 +3,41 @@ from .models import Book, Library, UserProfile
 from django.views.generic import DetailView
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, permission_required
 
 # Create your views here.
 def booklist_view(request):
      """Retrieves all books and renders a template displaying the list."""
      books = Book.objects.all()  # Fetch all book instances from the database
      return render(request,'relationship_app/book_list.html', context={'book_list': books})  # Render context dictionary with book list
+
+
+@permission_required('can_add_book')
+def add_book(request):
+    if request.method == 'POST':
+     title = request.POST.get('title')
+     author = request.POST.get('author')
+     isbn = request.POST.get('isbn')
+     Book.objects.create(title=title, author=author, isbn=isbn)
+     return redirect('books')
+
+@permission_required('can_delete_book')
+def delete_book(request, pk):
+    if request.method == 'POST':
+     book = Book.objects.get(id=pk)
+     book.delete()
+     return redirect('book')
+    
+@permission_required('can_change_book')
+def edit_book(request, pk):
+    book = Book.objects.get(id=pk)
+    if request.method == 'POST':
+     book.title = request.POST.get('title')
+     book.author = request.POST.get('author')
+     book.isbn = request.POST.get('isbn')
+     book.save()
+     return redirect('books')
+    
 
 # Class based view
 class LibraryDetailView(DetailView):
