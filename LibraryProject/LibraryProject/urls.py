@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/books/', BookListCreateAPIView.as_view(), name="book_list_create"),
     path('api/library/<int:pk>', LibraryDetailView.as_view(), name="library_detail"),
-    path('api/books/', booklist_view, name="book_list")
+    path('api/books/fbv', booklist_view, name="book_list_fbv")
 ]
