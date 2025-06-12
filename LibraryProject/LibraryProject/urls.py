@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from bookshelf.views import BookListCreateAPIView
+from relationship_app.views import LibraryDetailView, booklist_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/books/', BookListCreateAPIView.as_view(), name="book_list_create")
+    path('api/books/', BookListCreateAPIView.as_view(), name="book_list_create"),
+    path('api/library/<int:pk>', LibraryDetailView.as_view(), name="library_detail"),
+    path('api/books/', booklist_view, name="book_list")
 ]
